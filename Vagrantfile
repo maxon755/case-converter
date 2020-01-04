@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "shucream0117/php7.1.2"
+  config.vm.box = "laravel/homestead"
   config.vm.box_version = "1.0"
 
   # Disable automatic box update checking. If you disable this, then
