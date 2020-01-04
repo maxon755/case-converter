@@ -76,4 +76,36 @@ class StringCaseConverterTest extends TestCase
             ['MULTI_WORD_UPPER__CASE', 'multiWordUpperCase'],
         ];
     }
+
+    /**
+     * @dataProvider snakeCaseDataProvider
+     * @param string $subject
+     * @param string $expected
+     */
+    public function testStringToSnakeConversion($subject, $expected)
+    {
+        $this->assertEquals($expected, CaseConverter::string($subject)->toSnake());
+    }
+
+    public function snakeCaseDataProvider()
+    {
+        return [
+            ['', ''],
+            ['word', 'word'],
+            ['Cap', 'cap'],
+            ['two words', 'two_words'],
+            ['two    words', 'two_words'],
+            ['few words in   single  line', 'few_words_in_single_line'],
+            ['kebab-case', 'kebab_case'],
+            ['multi-word-kebab-case', 'multi_word_kebab_case'],
+            ['camelCase', 'camel_case'],
+            ['multiWordCamelCase', 'multi_word_camel_case'],
+            ['snake_case', 'snake_case'],
+            ['multi_word___snake__case', 'multi_word_snake_case'],
+            ['PascalCase', 'pascal_case'],
+            ['MultiWordPascalCase', 'multi_word_pascal_case'],
+            ['UPPER_CASE', 'upper_case'],
+            ['MULTI_WORD_UPPER__CASE', 'multi_word_upper_case'],
+        ];
+    }
 }
