@@ -7,6 +7,7 @@ use CaseConverter\Converters\HumanCaseConverter;
 use CaseConverter\Converters\KebabCaseConverter;
 use CaseConverter\Converters\PascalCaseConverter;
 use CaseConverter\Converters\SnakeCaseConverter;
+use CaseConverter\Handlers\ArrayHandler;
 use CaseConverter\Handlers\StringHandler;
 use CaseConverter\Interfaces\Converter;
 use CaseConverter\Interfaces\Handler;
@@ -41,14 +42,28 @@ class CaseConverter
     public static function string($string)
     {
         if (!is_string($string)) {
-            $type = gettype($string);
-
-            throw new InvalidArgumentException(
-                'Argument should be type of string ' . $type . ' given.'
-            );
+            self::throwException($string, 'string');
         }
 
         return new self($string, new StringHandler());
+    }
+
+    public static function array($array)
+    {
+        if (!is_array($array)) {
+            self::throwException($array, 'array');
+        }
+
+        return new self($array, new ArrayHandler());
+    }
+
+    private static function throwException($subject, $expectedType)
+    {
+        $type = gettype($subject);
+
+        throw new InvalidArgumentException(
+            'Argument should be ' . $expectedType . ' of string ' . $type . ' given.'
+        );
     }
 
     /**
