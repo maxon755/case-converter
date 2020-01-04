@@ -2,8 +2,9 @@
 
 namespace CaseConverter;
 
+use CaseConverter\Converters\CamelCaseConverter;
 use CaseConverter\Converters\Converter;
-use CaseConverter\Converters\KebabConverter;
+use CaseConverter\Converters\KebabCaseConverter;
 use CaseConverter\Handlers\Handler;
 use CaseConverter\Handlers\StringHandler;
 use InvalidArgumentException;
@@ -59,6 +60,11 @@ class CaseConverter
 
     public function toKebab()
     {
-        return $this->to(new KebabConverter());
+        return $this->to(new KebabCaseConverter());
+    }
+
+    public function toCamel()
+    {
+        return $this->to(new CamelCaseConverter());
     }
 }
