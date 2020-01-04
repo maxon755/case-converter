@@ -140,4 +140,36 @@ class StringCaseConverterTest extends TestCase
             ['MULTI_WORD_UPPER__CASE', 'MultiWordUpperCase'],
         ];
     }
+
+    /**
+     * @dataProvider humanCaseDataProvider
+     * @param string $subject
+     * @param string $expected
+     */
+    public function testStringToHumanConversion($subject, $expected)
+    {
+        $this->assertEquals($expected, CaseConverter::string($subject)->toHuman());
+    }
+
+    public function humanCaseDataProvider()
+    {
+        return [
+            ['', ''],
+            ['word', 'word'],
+            ['Cap', 'cap'],
+            ['two words', 'two words'],
+            ['two    words', 'two words'],
+            ['few words in   single  line', 'few words in single line'],
+            ['kebab-case', 'kebab case'],
+            ['multi-word-kebab-case', 'multi word kebab case'],
+            ['camelCase', 'camel case'],
+            ['multiWordCamelCase', 'multi word camel case'],
+            ['snake_case', 'snake case'],
+            ['multi_word___snake__case', 'multi word snake case'],
+            ['PascalCase', 'pascal case'],
+            ['MultiWordPascalCase', 'multi word pascal case'],
+            ['UPPER_CASE', 'upper case'],
+            ['MULTI_WORD_UPPER__CASE', 'multi word upper case'],
+        ];
+    }
 }

@@ -3,6 +3,7 @@
 namespace CaseConverter;
 
 use CaseConverter\Converters\CamelCaseConverter;
+use CaseConverter\Converters\HumanCaseConverter;
 use CaseConverter\Converters\KebabCaseConverter;
 use CaseConverter\Converters\PascalCaseConverter;
 use CaseConverter\Converters\SnakeCaseConverter;
@@ -78,5 +79,10 @@ class CaseConverter
     public function toPascal()
     {
         return $this->to(new PascalCaseConverter());
+    }
+
+    public function  toHuman()
+    {
+        return $this->to(new HumanCaseConverter());
     }
 }
