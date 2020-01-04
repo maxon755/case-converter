@@ -1,0 +1,24 @@
+{
+    "name": "maxon755/case-converter",
+    "description": "Advanced case converter",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maksym Haiduk",
+            "email": "maksym.haiduk@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "CaseConverter\\": "source"
+        }
+    },
+    "require": {
+        "php":">=7.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}
