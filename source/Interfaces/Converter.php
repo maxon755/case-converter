@@ -1,6 +1,6 @@
 <?php
 
-namespace CaseConverter\Converters;
+namespace CaseConverter\Interfaces;
 
 interface Converter
 {

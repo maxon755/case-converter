@@ -3,10 +3,10 @@
 namespace CaseConverter;
 
 use CaseConverter\Converters\CamelCaseConverter;
-use CaseConverter\Converters\Converter;
 use CaseConverter\Converters\KebabCaseConverter;
-use CaseConverter\Handlers\Handler;
 use CaseConverter\Handlers\StringHandler;
+use CaseConverter\Interfaces\Converter;
+use CaseConverter\Interfaces\Handler;
 use InvalidArgumentException;
 
 class CaseConverter

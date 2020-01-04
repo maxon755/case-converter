@@ -2,6 +2,8 @@
 
 namespace CaseConverter\Handlers;
 
+use CaseConverter\Interfaces\Handler;
+
 class StringHandler implements Handler
 {
     /**

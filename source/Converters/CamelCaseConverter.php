@@ -2,6 +2,8 @@
 
 namespace CaseConverter\Converters;
 
+use CaseConverter\Interfaces\Converter;
+
 class CamelCaseConverter implements Converter
 {
     /**

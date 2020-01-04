@@ -1,8 +1,6 @@
 <?php
 
-namespace CaseConverter\Handlers;
-
-use CaseConverter\Converters\Converter;
+namespace CaseConverter\Interfaces;
 
 interface Handler
 {
