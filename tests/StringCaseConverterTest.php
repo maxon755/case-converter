@@ -108,4 +108,36 @@ class StringCaseConverterTest extends TestCase
             ['MULTI_WORD_UPPER__CASE', 'multi_word_upper_case'],
         ];
     }
+
+    /**
+     * @dataProvider pascalCaseDataProvider
+     * @param string $subject
+     * @param string $expected
+     */
+    public function testStringToPascalConversion($subject, $expected)
+    {
+        $this->assertEquals($expected, CaseConverter::string($subject)->toPascal());
+    }
+
+    public function pascalCaseDataProvider()
+    {
+        return [
+            ['', ''],
+            ['word', 'Word'],
+            ['Cap', 'Cap'],
+            ['two words', 'TwoWords'],
+            ['two    words', 'TwoWords'],
+            ['few words in   single  line', 'FewWordsInSingleLine'],
+            ['kebab-case', 'KebabCase'],
+            ['multi-word-kebab-case', 'MultiWordKebabCase'],
+            ['camelCase', 'CamelCase'],
+            ['multiWordCamelCase', 'MultiWordCamelCase'],
+            ['snake_case', 'SnakeCase'],
+            ['multi_word___snake__case', 'MultiWordSnakeCase'],
+            ['PascalCase', 'PascalCase'],
+            ['MultiWordPascalCase', 'MultiWordPascalCase'],
+            ['UPPER_CASE', 'UpperCase'],
+            ['MULTI_WORD_UPPER__CASE', 'MultiWordUpperCase'],
+        ];
+    }
 }

@@ -4,6 +4,7 @@ namespace CaseConverter;
 
 use CaseConverter\Converters\CamelCaseConverter;
 use CaseConverter\Converters\KebabCaseConverter;
+use CaseConverter\Converters\PascalCaseConverter;
 use CaseConverter\Converters\SnakeCaseConverter;
 use CaseConverter\Handlers\StringHandler;
 use CaseConverter\Interfaces\Converter;
@@ -72,5 +73,10 @@ class CaseConverter
     public function toSnake()
     {
         return $this->to(new SnakeCaseConverter());
+    }
+
+    public function toPascal()
+    {
+        return $this->to(new PascalCaseConverter());
     }
 }
