@@ -2,42 +2,23 @@
 
 namespace CaseConverter;
 
-use CaseConverter\Converters\CamelCaseConverter;
-use CaseConverter\Converters\HumanCaseConverter;
-use CaseConverter\Converters\KebabCaseConverter;
-use CaseConverter\Converters\PascalCaseConverter;
-use CaseConverter\Converters\SnakeCaseConverter;
 use CaseConverter\Handlers\ArrayHandler;
 use CaseConverter\Handlers\StringHandler;
-use CaseConverter\Interfaces\Converter;
-use CaseConverter\Interfaces\Handler;
-use InvalidArgumentException;
+use CaseConverter\Traits\ThrowException;
 
 class CaseConverter
 {
-    /** @var mixed entity than will be converted */
-    private $subject;
+    use ThrowException;
 
-    /** @var Handler */
-    private $handler;
-
-    /**
-     * CaseConverter constructor.
-     *
-     * @param mixed $subject
-     * @param string $handler
-     */
-    private function __construct($subject, $handler)
+    private function __construct()
     {
-        $this->subject = $subject;
-        $this->handler = $handler;
     }
 
     /**
-     * Named constructor for single string conversion
+     * Single string conversion
      *
      * @param string $string
-     * @return CaseConverter
+     * @return StringHandler
      */
     public static function string($string)
     {
@@ -45,59 +26,21 @@ class CaseConverter
             self::throwException($string, 'string');
         }
 
-        return new self($string, new StringHandler());
+        return new StringHandler($string);
     }
 
+    /**
+     * Array conversion
+     *
+     * @param $array
+     * @return ArrayHandler
+     */
     public static function array($array)
     {
         if (!is_array($array)) {
             self::throwException($array, 'array');
         }
 
-        return new self($array, new ArrayHandler());
-    }
-
-    private static function throwException($subject, $expectedType)
-    {
-        $type = gettype($subject);
-
-        throw new InvalidArgumentException(
-            'Argument should be ' . $expectedType . ' of string ' . $type . ' given.'
-        );
-    }
-
-    /**
-     * @param Converter $converter
-     *
-     * @return mixed
-     */
-    private function to($converter)
-    {
-        return $this->handler->handle($this->subject, $converter);
-    }
-
-    public function toKebab()
-    {
-        return $this->to(new KebabCaseConverter());
-    }
-
-    public function toCamel()
-    {
-        return $this->to(new CamelCaseConverter());
-    }
-
-    public function toSnake()
-    {
-        return $this->to(new SnakeCaseConverter());
-    }
-
-    public function toPascal()
-    {
-        return $this->to(new PascalCaseConverter());
-    }
-
-    public function  toHuman()
-    {
-        return $this->to(new HumanCaseConverter());
+        return new ArrayHandler($array);
     }
 }

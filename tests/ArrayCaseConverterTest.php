@@ -19,8 +19,6 @@ class ArrayCaseConverterTest extends TestCase
      */
     public function testStringToKebabConversion($subject, $expected)
     {
-        var_dump(CaseConverter::array($subject)->toKebab());
-
         $this->assertEquals($expected, CaseConverter::array($subject)->toKebab());
     }
 
@@ -40,6 +38,28 @@ class ArrayCaseConverterTest extends TestCase
                     'snake-case', 'multi-word-snake-case', 'pascal-case', 'multi-word-pascal-case',
                     'upper-case', 'multi-word-upper-case'
                 ]
+            ],
+            [
+                [
+                    'snake_case',
+                    [
+                        'camelCase',
+                        [
+                            'human case',
+                            'PascalCase,'
+                        ]
+                    ]
+                ],
+                [
+                    'snake-case',
+                    [
+                        'camel-case',
+                        [
+                            'human-case',
+                            'pascal-case,'
+                        ]
+                    ]
+                ],
             ]
         ];
     }

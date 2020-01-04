@@ -2,9 +2,7 @@
 
 namespace CaseConverter\Handlers;
 
-use CaseConverter\Interfaces\Handler;
-
-class StringHandler implements Handler
+class StringHandler extends BaseHandler
 {
     /**
      * @inheritDoc
