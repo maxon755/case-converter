@@ -19,6 +19,14 @@ abstract class BaseHandler
         $this->subject = $subject;
     }
 
+    /**
+     * Handles particular type of subject.
+     *
+     * @param mixed $subject
+     * @param Converter $converter
+     *
+     * @return mixed
+     */
     abstract public function handle($subject, $converter);
 
     /**

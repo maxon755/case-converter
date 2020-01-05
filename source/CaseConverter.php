@@ -4,12 +4,10 @@ namespace CaseConverter;
 
 use CaseConverter\Handlers\ArrayValuesHandler;
 use CaseConverter\Handlers\StringHandler;
-use CaseConverter\Traits\ThrowException;
+use InvalidArgumentException;
 
 class CaseConverter
 {
-    use ThrowException;
-
     private function __construct()
     {
     }
@@ -42,5 +40,14 @@ class CaseConverter
         }
 
         return new ArrayValuesHandler($array);
+    }
+
+    private static function throwException($subject, $expectedType)
+    {
+        $type = gettype($subject);
+
+        throw new InvalidArgumentException(
+            'Argument should be ' . $expectedType . ' of string ' . $type . ' given.'
+        );
     }
 }

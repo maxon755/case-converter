@@ -70,8 +70,10 @@ class ArrayValuesCaseConverterTest extends TestCase
     public function testArrayDepthConversionWithInvalidArgument()
     {
         $this->expectException(InvalidArgumentException::class);
-
         CaseConverter::array([])->depth('forty two');
+
+        $this->expectException(InvalidArgumentException::class);
+        CaseConverter::array([])->depth(-42);
     }
 
     /**
@@ -91,20 +93,26 @@ class ArrayValuesCaseConverterTest extends TestCase
             [
                 0,
                 [
+                    42,
                     'snake_case',
                     [
+                        43,
                         'camelCase',
                         [
+                            44,
                             'human case',
                             'PascalCase,'
                         ]
                     ]
                 ],
                 [
+                    42,
                     'snake-case',
                     [
+                        43,
                         'camelCase',
                         [
+                            44,
                             'human case',
                             'PascalCase,'
                         ]
@@ -114,20 +122,26 @@ class ArrayValuesCaseConverterTest extends TestCase
             [
                 1,
                 [
+                    42,
                     'snake_case',
                     [
+                        43,
                         'camelCase',
                         [
+                            44,
                             'human case',
                             'PascalCase,'
                         ]
                     ]
                 ],
                 [
+                    42,
                     'snake-case',
                     [
+                        43,
                         'camel-case',
                         [
+                            44,
                             'human case',
                             'PascalCase,'
                         ]
@@ -137,20 +151,26 @@ class ArrayValuesCaseConverterTest extends TestCase
             [
                 2,
                 [
+                    42,
                     'snake_case',
                     [
+                        43,
                         'camelCase',
                         [
+                            44,
                             'human case',
                             'PascalCase,'
                         ]
                     ]
                 ],
                 [
+                    42,
                     'snake-case',
                     [
+                        43,
                         'camel-case',
                         [
+                            44,
                             'human-case',
                             'pascal-case,'
                         ]

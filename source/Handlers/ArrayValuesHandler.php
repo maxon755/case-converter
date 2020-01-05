@@ -2,14 +2,11 @@
 
 namespace CaseConverter\Handlers;
 
-use CaseConverter\Traits\ThrowException;
+use InvalidArgumentException;
 
 class ArrayValuesHandler extends BaseHandler
 {
-    use ThrowException;
-
-    protected $handler = null;
-
+    /** @var integer | null recursion depth  */
     protected $depth = null;
 
     /**
@@ -19,16 +16,10 @@ class ArrayValuesHandler extends BaseHandler
     {
         return array_map(function ($item) use ($converter) {
             if (is_array($item)) {
-                if (is_null($this->depth)) {
+                if (is_null($this->depth) || $this->depth-- > 0) {
                     return $this->handle($item, $converter);
                 } else {
-                    if ($this->depth > 0) {
-                        $this->depth -= 1;
-
-                        return $this->handle($item, $converter);
-                    } else {
-                        return $item;
-                    }
+                    return $item;
                 }
 
             } else if (!is_string($item)) {
@@ -50,13 +41,13 @@ class ArrayValuesHandler extends BaseHandler
     }
 
     /**
-     * @param int $depth
+     * @param integer $depth
      * @return $this
      */
     public function depth($depth)
     {
-        if (!is_integer($depth)) {
-            $this->throwException($depth, 'integer');
+        if (!is_integer($depth) || $depth < 0) {
+            throw new InvalidArgumentException("Depth parameter should be non negative integer");
         }
 
         $this->depth = $depth;
