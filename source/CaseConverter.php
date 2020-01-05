@@ -2,7 +2,7 @@
 
 namespace CaseConverter;
 
-use CaseConverter\Handlers\ArrayHandler;
+use CaseConverter\Handlers\ArrayValuesHandler;
 use CaseConverter\Handlers\StringHandler;
 use CaseConverter\Traits\ThrowException;
 
@@ -33,7 +33,7 @@ class CaseConverter
      * Array conversion
      *
      * @param $array
-     * @return ArrayHandler
+     * @return ArrayValuesHandler
      */
     public static function array($array)
     {
@@ -41,6 +41,6 @@ class CaseConverter
             self::throwException($array, 'array');
         }
 
-        return new ArrayHandler($array);
+        return new ArrayValuesHandler($array);
     }
 }
