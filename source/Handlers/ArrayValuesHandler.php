@@ -40,6 +40,11 @@ class ArrayValuesHandler extends BaseHandler
         return new ArrayKeysHandler($this->subject);
     }
 
+    public function both()
+    {
+        return new ArrayBothHandler($this->subject);
+    }
+
     /**
      * @param integer $depth
      * @return $this
