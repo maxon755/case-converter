@@ -62,8 +62,9 @@ Or both keys and values:
 #### Nested array conversion:
 If given array is nested CaseConverter will recursively convert it's items.
 
-You can limit depth of recursion using `depth()` method:
-(recursion levels start count from 0)
+You can limit depth of recursion using `depth(int $depth)` method:
+
+note: recursion level count starts from 0.
 
 ```php
     $someArray = [
