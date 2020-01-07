@@ -2,12 +2,14 @@
 
 namespace CaseConverter\Handlers;
 
+use CaseConverter\Interfaces\Converter;
+
 class ArrayValuesHandler extends ArrayBaseHandler
 {
     /**
      * @inheritDoc
      */
-    public function handle($subject, $converter)
+    public function handle($subject, Converter $converter)
     {
         return $this->traversArray($subject, function($key, $item) use ($converter) {
             return [

@@ -18,7 +18,7 @@ class ArrayProxy
 {
     private $subject;
 
-    public function __construct($subject)
+    public function __construct(array $subject)
     {
         $this->subject = $subject;
     }

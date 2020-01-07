@@ -18,12 +18,8 @@ class CaseConverter
      * @param string $string
      * @return StringHandler
      */
-    public static function string($string)
+    public static function string(string $string)
     {
-        if (!is_string($string)) {
-            self::throwException($string, 'string');
-        }
-
         return new StringHandler($string);
     }
 
@@ -33,21 +29,8 @@ class CaseConverter
      * @param $array
      * @return ArrayProxy
      */
-    public static function array($array)
+    public static function array(array $array)
     {
-        if (!is_array($array)) {
-            self::throwException($array, 'array');
-        }
-
         return new ArrayProxy($array);
-    }
-
-    private static function throwException($subject, $expectedType)
-    {
-        $type = gettype($subject);
-
-        throw new InvalidArgumentException(
-            'Argument should be ' . $expectedType . ' of string ' . $type . ' given.'
-        );
     }
 }

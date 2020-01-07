@@ -5,14 +5,6 @@ use PHPUnit\Framework\TestCase;
 
 class StringCaseConverterTest extends TestCase
 {
-
-    public function testStringConversionWithInvalidArgument()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        CaseConverter::string(42);
-    }
-
     /**
      * @dataProvider kebabCaseDataProvider
      * @param string $subject

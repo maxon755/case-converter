@@ -5,13 +5,6 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayValuesCaseConverterTest extends TestCase
 {
-    public function testArrayConversionWithInvalidArgument()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        CaseConverter::array(42);
-    }
-
     /**
      * @dataProvider kebabCaseDataProvider
      * @param array $subject
@@ -69,9 +62,6 @@ class ArrayValuesCaseConverterTest extends TestCase
 
     public function testArrayDepthConversionWithInvalidArgument()
     {
-        $this->expectException(InvalidArgumentException::class);
-        CaseConverter::array([])->depth('forty two');
-
         $this->expectException(InvalidArgumentException::class);
         CaseConverter::array([])->depth(-42);
     }

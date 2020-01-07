@@ -27,14 +27,14 @@ abstract class BaseHandler
      *
      * @return mixed
      */
-    abstract public function handle($subject, $converter);
+    abstract public function handle($subject, Converter $converter);
 
     /**
      * @param Converter $converter
      *
      * @return mixed
      */
-    private function to($converter)
+    private function to(Converter $converter)
     {
         return static::handle($this->subject, $converter);
     }

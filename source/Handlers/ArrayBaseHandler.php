@@ -31,12 +31,12 @@ abstract class ArrayBaseHandler extends BaseHandler
     }
 
     /**
-     * @param integer $depth
+     * @param int $depth
      * @return $this
      */
-    public function depth($depth)
+    public function depth(int $depth)
     {
-        if (!is_integer($depth) || $depth < 0) {
+        if ($depth < 0) {
             throw new InvalidArgumentException("Depth parameter should be non negative integer");
         }
 
