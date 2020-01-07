@@ -2,7 +2,7 @@
 
 namespace CaseConverter\Handlers;
 
-class ArrayKeysHandler extends ArrayValuesHandler
+class ArrayKeysHandler extends ArrayBaseHandler
 {
     /**
      * @inheritDoc
@@ -12,17 +12,16 @@ class ArrayKeysHandler extends ArrayValuesHandler
         $result = [];
 
         foreach ($subject as $key => $item) {
+            $key = is_string($key) ? $converter->convert($key) : $key;
+
             if (is_array($item)) {
                 if (is_null($this->depth) || $this->depth-- > 0) {
-                    $result[$converter->convert($key)] = $this->handle($item, $converter);
+                    $result[$key] = $this->handle($item, $converter);
                 } else {
-                    $result[$converter->convert($key)] = $item;
-
+                    $result[$key] = $item;
                 }
-            } else if (!is_string($key)) {
-                $result[$key] = $item;
             } else {
-                $result[$converter->convert($key)] = $item;
+                $result[$key] = $item;
             }
         }
 

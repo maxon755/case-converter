@@ -2,7 +2,7 @@
 
 namespace CaseConverter\Handlers;
 
-class ArrayBothHandler extends ArrayValuesHandler
+class ArrayBothHandler extends ArrayBaseHandler
 {
     /**
      * @inheritDoc

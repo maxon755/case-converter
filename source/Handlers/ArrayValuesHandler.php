@@ -2,13 +2,8 @@
 
 namespace CaseConverter\Handlers;
 
-use InvalidArgumentException;
-
-class ArrayValuesHandler extends BaseHandler
+class ArrayValuesHandler extends ArrayBaseHandler
 {
-    /** @var integer | null recursion depth  */
-    protected $depth = null;
-
     /**
      * @inheritDoc
      */
@@ -28,35 +23,5 @@ class ArrayValuesHandler extends BaseHandler
 
             return $converter->convert($item);
         }, $subject);
-    }
-
-    public function values()
-    {
-        return $this;
-    }
-
-    public function keys()
-    {
-        return new ArrayKeysHandler($this->subject);
-    }
-
-    public function both()
-    {
-        return new ArrayBothHandler($this->subject);
-    }
-
-    /**
-     * @param integer $depth
-     * @return $this
-     */
-    public function depth($depth)
-    {
-        if (!is_integer($depth) || $depth < 0) {
-            throw new InvalidArgumentException("Depth parameter should be non negative integer");
-        }
-
-        $this->depth = $depth;
-
-        return $this;
     }
 }

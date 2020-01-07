@@ -31,7 +31,7 @@ class CaseConverter
      * Array conversion
      *
      * @param $array
-     * @return ArrayValuesHandler
+     * @return ArrayProxy
      */
     public static function array($array)
     {
@@ -39,7 +39,7 @@ class CaseConverter
             self::throwException($array, 'array');
         }
 
-        return new ArrayValuesHandler($array);
+        return new ArrayProxy($array);
     }
 
     private static function throwException($subject, $expectedType)
