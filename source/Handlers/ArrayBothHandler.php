@@ -9,23 +9,11 @@ class ArrayBothHandler extends ArrayBaseHandler
      */
     public function handle($subject, $converter)
     {
-        $result = [];
-
-        foreach ($subject as $key => $item) {
-            $item = is_string($item) ? $converter->convert($item) : $item;
-            $key = is_string($key) ? $converter->convert($key) : $key;
-
-            if (is_array($item)) {
-                if (is_null($this->depth) || $this->depth-- > 0) {
-                    $result[$key] = $this->handle($item, $converter);
-                } else {
-                    $result[$key] = $item;
-                }
-            } else {
-                $result[$key] = $item;
-            }
-        }
-
-        return $result;
+        return $this->traversArray($subject, function ($key, $item) use ($converter) {
+            return [
+                is_string($item) ? $converter->convert($item) : $item,
+                is_string($key) ? $converter->convert($key) : $key,
+            ];
+        });
     }
 }
