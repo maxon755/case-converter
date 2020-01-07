@@ -65,13 +65,18 @@ abstract class BaseHandler
         return $this->to(new HumanCaseConverter());
     }
 
+    /**
+     * @param $converter
+     *
+     * @return mixed
+     */
     public function withConverter($converter)
     {
         if (is_callable($converter)) {
             $converter = $this->buildConverter($converter);
         }
         if (!$converter instanceof Converter) {
-            throw  new InvalidArgumentException(
+            throw new InvalidArgumentException(
                 '$converter must be instance of ' . Converter::class . ' or callable'
             );
         }
@@ -79,6 +84,10 @@ abstract class BaseHandler
         return $this->to($converter);
     }
 
+    /**
+     * @param callable $callable
+     * @return Converter
+     */
     private function buildConverter(callable $callable): Converter
     {
         return new class($callable) implements Converter {
