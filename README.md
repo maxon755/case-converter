@@ -11,6 +11,10 @@ Supported cases:
 - snake_case
 - human case
 
+#### Installation:
+    
+    composer require maxon755/case-converter
+
 #### Usage:
 
 #### String conversion:
