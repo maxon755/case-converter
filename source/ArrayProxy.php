@@ -13,6 +13,8 @@ use CaseConverter\Handlers\ArrayValuesHandler;
  * @method toSnake()
  * @method toPascal()
  * @method toHuman()
+ *
+ * @method withConverter($converter)
  */
 class ArrayProxy
 {

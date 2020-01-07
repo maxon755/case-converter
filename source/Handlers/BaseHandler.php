@@ -8,6 +8,7 @@ use CaseConverter\Converters\KebabCaseConverter;
 use CaseConverter\Converters\PascalCaseConverter;
 use CaseConverter\Converters\SnakeCaseConverter;
 use CaseConverter\Interfaces\Converter;
+use InvalidArgumentException;
 
 abstract class BaseHandler
 {
@@ -59,8 +60,42 @@ abstract class BaseHandler
         return $this->to(new PascalCaseConverter());
     }
 
-    public function  toHuman()
+    public function toHuman()
     {
         return $this->to(new HumanCaseConverter());
+    }
+
+    public function withConverter($converter)
+    {
+        if (is_callable($converter)) {
+            $converter = $this->buildConverter($converter);
+        }
+        if (!$converter instanceof Converter) {
+            throw  new InvalidArgumentException(
+                '$converter must be instance of ' . Converter::class . ' or callable'
+            );
+        }
+
+        return $this->to($converter);
+    }
+
+    private function buildConverter(callable $callable): Converter
+    {
+        return new class($callable) implements Converter {
+            private $callable;
+
+            public function __construct(callable  $callable)
+            {
+                $this->callable = $callable;
+            }
+
+            /**
+             * @inheritDoc
+             */
+            public function convert($string)
+            {
+                return call_user_func($this->callable, $string);
+            }
+        };
     }
 }
