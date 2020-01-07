@@ -1,6 +1,6 @@
-### CaseConverter
+## CaseConverter
 
-##### Package for advanced case conversion
+### Package for advanced case conversion
 
 It allows to convert arbitrary strings to specific cases.
 
@@ -11,10 +11,11 @@ Supported cases:
 - snake_case
 - human case
 
-####Usage:
+#### Usage:
 
-##### String conversion:
+#### String conversion:
 
+```php
     CaseConverter::string('some String')->toCamel();    //'someString'
     
     CaseConverter::string('some String')->toPascal();   //'SomeString'
@@ -24,38 +25,47 @@ Supported cases:
     CaseConverter::string('some String')->toSnake();    //'some_string'
     
     CaseConverter::string('some String')->toHuman();    //'some string'
+```
 
-
-##### Array conversion:
+#### Array conversion:
 Also arrays can be converted:
 
+```php
     CaseConverter::array([
         'not_converted_key' => 'converted_value'
     ])->toCamel(); 
 
-    will return: [
-       'not_converted_key' => 'convertedValue'
-    ]
 
-By default only array values will be converted.
-You can specify in explicitly, using values() method:
+    // return: [
+    //    'not_converted_key' => 'convertedValue'
+    // ]
+```
 
+By default only array values will be converted. You can specify it explicitly, using `values()` method:
+
+```php
     CaseConverter::array($someArray)->values()->toCamel();
-        
+```
+
 Or you can convert only keys of array:
 
+```php
     CaseConverter::array($someArray)->keys()->toCamel();
-    
+```
+
 Or both keys and values:
 
+```php
     CaseConverter::array($someArray)->both()->toCamel();
-    
-##### Multidimensional Array conversion:
-If given array is nested CaseConverter will recursively convert it`s items.
+```
 
-You can limit depth of recursion using depth() method:
+#### Nested array conversion:
+If given array is nested CaseConverter will recursively convert it's items.
+
+You can limit depth of recursion using `depth()` method:
 (recursion levels start count from 0)
 
+```php
     $someArray = [
         'zero level array',
         [
@@ -66,33 +76,37 @@ You can limit depth of recursion using depth() method:
 
     CaseConverter::array($someArray)->values()->depth(0)->toCamel();
 
-    will return:
-    [
-        'zeroLevelArray', // converted
-        [
-            'first level array' // not converted
-        ]
-    ]
+    // return:
+    // [
+    //     'zeroLevelArray', // converted
+    //     [
+    //         'first level array' // not converted
+    //     ]
+    // ]
+```
 
-##### Custom converters:
-If supported case converters is not enough for your need you can define your
-own using withConverter() method. 
+#### Custom converters:
+If supported functionality is not enough for your need you can define your
+own converter and pass it to `withConverter()` method. 
 
 1. Callable
 
 You can pass you converter as callable, that takes string as argument
 and return modified string:
-    
+  
+```php
     CaseConverter::string('1-2-3-4')->withConverter(function ($string) {
         return str_replace('-', '*', $string);
     }); //'1*2*3*4'
+```
     
 2. Converter class
 
 You can create your own class, that will 
-implement CaseConverter\Interfaces\Converter interface
-and pass instance of this object to withConverter() method.
+implement `CaseConverter\Interfaces\Converter` interface
+and pass instance of this object to `withConverter()` method.
 
+```php
     class AsteriskConverter implements Converter
     {
         public function convert($string)
@@ -103,4 +117,4 @@ and pass instance of this object to withConverter() method.
     
     CaseConverter::string('1-2-3-4')
         ->withConverter(new AsteriskConverter()); //'1*2*3*4'
-    
+```
