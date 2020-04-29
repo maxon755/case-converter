@@ -9,7 +9,13 @@ abstract class ArrayBaseHandler extends BaseHandler
     /** @var integer | null recursion depth  */
     protected $depth = null;
 
-    protected function traversArray($subject, callable $action)
+    /**
+     * @param $subject
+     * @param callable $action
+     *
+     * @return array
+     */
+    protected function traversArray($subject, callable $action): array
     {
         $result = [];
 
@@ -34,7 +40,7 @@ abstract class ArrayBaseHandler extends BaseHandler
      * @param int $depth
      * @return $this
      */
-    public function depth(int $depth)
+    public function depth(int $depth): self
     {
         if ($depth < 0) {
             throw new InvalidArgumentException("Depth parameter should be non negative integer");

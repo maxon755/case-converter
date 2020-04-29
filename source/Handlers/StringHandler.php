@@ -9,7 +9,7 @@ class StringHandler extends BaseHandler
     /**
      * @inheritDoc
      */
-    public function handle($subject, Converter $converter)
+    public function handle($subject, Converter $converter): string
     {
         return $converter->convert($subject);
     }

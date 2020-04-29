@@ -8,8 +8,10 @@ class ArrayValuesHandler extends ArrayBaseHandler
 {
     /**
      * @inheritDoc
+     *
+     * @return array
      */
-    public function handle($subject, Converter $converter)
+    public function handle($subject, Converter $converter): array
     {
         return $this->traversArray($subject, function($key, $item) use ($converter) {
             return [

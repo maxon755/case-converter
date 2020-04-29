@@ -9,7 +9,7 @@ class CamelCaseConverter implements Converter
     /**
      * @inheritDoc
      */
-    public function convert($string)
+    public function convert($string): string
     {
         $string = preg_replace(
             '/(?<=[a-z])(?=[A-Z])|_+| +|-+/',

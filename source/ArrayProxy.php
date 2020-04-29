@@ -25,17 +25,17 @@ class ArrayProxy
         $this->subject = $subject;
     }
 
-    public function values()
+    public function values(): ArrayValuesHandler
     {
         return new ArrayValuesHandler($this->subject);
     }
 
-    public function keys()
+    public function keys(): ArrayKeysHandler
     {
         return new ArrayKeysHandler($this->subject);
     }
 
-    public function both()
+    public function both(): ArrayBothHandler
     {
         return new ArrayBothHandler($this->subject);
     }

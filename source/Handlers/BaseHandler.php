@@ -40,6 +40,9 @@ abstract class BaseHandler
         return static::handle($this->subject, $converter);
     }
 
+    /**
+     * @return array|string
+     */
     public function toKebab()
     {
         return $this->to(new KebabCaseConverter());
@@ -101,7 +104,7 @@ abstract class BaseHandler
             /**
              * @inheritDoc
              */
-            public function convert($string)
+            public function convert($string): string
             {
                 return call_user_func($this->callable, $string);
             }

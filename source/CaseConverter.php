@@ -18,7 +18,7 @@ class CaseConverter
      * @param string $string
      * @return StringHandler
      */
-    public static function string(string $string)
+    public static function string(string $string): StringHandler
     {
         return new StringHandler($string);
     }
@@ -29,7 +29,7 @@ class CaseConverter
      * @param $array
      * @return ArrayProxy
      */
-    public static function array(array $array)
+    public static function array(array $array): ArrayProxy
     {
         return new ArrayProxy($array);
     }

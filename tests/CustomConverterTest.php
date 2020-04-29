@@ -58,7 +58,7 @@ class CustomConverterTest extends TestCase
     private function getCustomClassConverter()
     {
         return new class implements Converter {
-            public function convert($string)
+            public function convert($string): string
             {
                 return str_replace('-', '*', $string);
             }

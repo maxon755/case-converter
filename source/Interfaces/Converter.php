@@ -11,5 +11,5 @@ interface Converter
      *
      * @return string
      */
-    public function convert($string);
+    public function convert($string): string;
 }
